@@ -31,3 +31,65 @@ After configuring your Machine, installed node:
 
 This last command will start the node server using PM2.
 You can view the logs using pm2 logs command.
+
+## API Routes
+
+- users/login
+    - params:
+        - email: String
+        - password: String | 6 chars long
+
+- users/logout
+    - Needs to be developed. Please check additional comments at the end of ReadMe file.
+
+- users/register
+    - params:
+        - email: String
+        - password: String | 6 chars long
+
+- users/movies
+    - params:
+        - userId
+
+- users/addmovie
+    - params:
+        - userId: String
+        - title: String
+        - year: String || Number
+        - image: String | base64
+        - imageType: String | [expecting an image]
+
+- users/editmovie
+    - params:
+        - movieId: String
+        - userId: String
+        - title: String
+        - year: String || Number
+        - image: String | base64
+        - imageType: String | [expecting an image]
+
+## Additional Comments
+
+Due to the time limit that was given to create the application and review the front end, some recommendations are listed below:
+
+### Front End
+- Build a template to use for all pages
+    - grid template
+    - color schemes
+- Use Protected Routes in a better way
+- Use components with props
+    - After login: get user data and pass it as props to authorized components
+- Unified and better CSS
+- Implement timeout session with time to live variable coming from the backend
+- Use Image Links rather than base64 decode for images
+- Spend more time on perfecting the design in general
+
+### Back End
+
+- Implement JWT Token on login
+- Validate JWT Token on every API call from a user
+- Refresh JWT Token
+- Refresh session time to live (based on JWT token time to live OR a different variable|calculation)
+- Change Image storage
+    - Store Images in S3
+    - Store the S3 URL in the database rather than the base64
